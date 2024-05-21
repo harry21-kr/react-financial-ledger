@@ -1,5 +1,12 @@
+import DefaultLayout from "../../components/Layout/DefaultLayout";
+import FlexBox from "../../components/ui/FlexBox/FlexBox";
+
 const HomePage = () => {
-  return <div>asd</div>;
+  return (
+    <DefaultLayout>
+      <FlexBox>asd</FlexBox>
+    </DefaultLayout>
+  );
 };
 
 export default HomePage;
