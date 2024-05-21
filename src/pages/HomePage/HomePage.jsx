@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import PaymentForm from "../../components/HomePage/PayForm";
 import DefaultLayout from "../../components/ui/DefaultLayout";
 import Flex from "../../components/ui/Flex";
 
 const HomePage = () => {
   return (
     <DefaultLayout>
-      <Wrap></Wrap>
+      <Wrap>
+        <PaymentForm />
+      </Wrap>
     </DefaultLayout>
   );
 };
@@ -13,7 +16,7 @@ const HomePage = () => {
 export default HomePage;
 
 const Wrap = styled(Flex)`
-  padding-top: 40px;
+  padding-top: 32px;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
 `;

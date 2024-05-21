@@ -13,26 +13,17 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   box-shadow: ${({ boxShadow }) =>
-    boxShadow && "rgba(0, 0, 0, 0.1) 0px 4px 6px;"}
-
-  ${({ variant }) => {
-    switch (variant) {
-      case "blue":
-        return "background-color: #007bff;";
-      case "green":
-        return "background-color: #2EC4B6";
-      case "default":
-        return "background-color: #F9F9F9";
-    }
-  }}
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.5;
-  }
+      boxShadow && "rgba(0, 0, 0, 0.1) 0px 4px 6px;"}
+    ${({ variant }) => {
+      switch (variant) {
+        case "blue":
+          return "";
+        case "green":
+          return "background-color: #2EC4B6";
+        case "default":
+          return "background-color: #F9F9F9";
+      }
+    }};
 `;
 
 export default Button;
