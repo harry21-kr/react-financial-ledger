@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DefaultLayout = styled.main`
+export const DefaultLayout = styled.main`
   display: flex;
   flex-direction: column;
   justify-context: center;

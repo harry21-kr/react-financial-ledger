@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import Box from "../ui/Box";
-import Button from "../ui/Button";
-import Flex from "../ui/Flex";
-import Input from "../ui/Input";
-import Text from "../ui/Text";
+import { Box, Button, Flex, Input, Text } from "../ui";
 
 const PaymentHistoryForm = () => {
   return (

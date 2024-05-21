@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Input = styled.input`
+export const Input = styled.input`
   min-width: 130px;
   height: 16px;
   padding: 8px;

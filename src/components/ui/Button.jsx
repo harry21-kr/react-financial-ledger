@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+export const Button = styled.button`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   min-width: 64px;

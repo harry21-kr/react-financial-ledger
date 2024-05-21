@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import PaymentForm from "../../components/HomePage/PayForm";
-import DefaultLayout from "../../components/ui/DefaultLayout";
-import Flex from "../../components/ui/Flex";
+import PaymentHistoryForm from "../../components/HomePage/PaymentHistoryForm";
+import { DefaultLayout, Flex } from "../../components/ui";
 
 const HomePage = () => {
   return (
     <DefaultLayout>
       <Wrap>
-        <PaymentForm />
+        <PaymentHistoryForm />
       </Wrap>
     </DefaultLayout>
   );
