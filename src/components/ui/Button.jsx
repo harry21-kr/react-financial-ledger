@@ -1,30 +1,6 @@
 import styled from "styled-components";
 
-const Button = ({
-  width = "auto",
-  height = "auto",
-  value = "",
-  variant = "blue",
-  onClick,
-  disabled = false,
-  boxShadow,
-  children,
-}) => {
-  return (
-    <StyledButton
-      width={width}
-      height={height}
-      onClick={onClick}
-      disabled={disabled}
-      boxShadow={boxShadow}
-      variant={variant}
-    >
-      {value || children}
-    </StyledButton>
-  );
-};
-
-const StyledButton = styled.button`
+const Button = styled.button`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   min-width: 64px;
