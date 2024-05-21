@@ -10,8 +10,8 @@ const PaymentHistoryMonth = () => {
         {Array.from({ length: 12 }).map((_, idx) => (
           <SelectMonthButton
             key={idx}
-            isSelected={selectedMonth === idx}
-            onClick={() => setSelectedMonth(idx)}
+            $isSelected={selectedMonth === idx + 1}
+            onClick={() => setSelectedMonth(idx + 1)}
           >
             {idx + 1}월
           </SelectMonthButton>
@@ -29,11 +29,14 @@ const Wrap = styled(Flex)`
   flex-wrap: wrap;
 `;
 
-const SelectMonthButton = styled(Button)`
-  background-color: ${({ isSelected }) => (isSelected ? "#2ec4b6" : "#F6F7FA")};
+const SelectMonthButton = styled(Button).attrs((props) => ({
+  $isSelected: props.$isSelected || false,
+}))`
+  background-color: ${({ $isSelected }) =>
+    $isSelected ? "#2ec4b6" : "#F6F7FA"};
   width: 104px;
   height: 60px;
-  color: ${({ isSelected }) => (isSelected ? "white" : "black")};
+  color: ${({ $isSelected }) => ($isSelected ? "white" : "black")};
 
   &:hover {
     opacity: 0.8;
