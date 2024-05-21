@@ -4,8 +4,11 @@ const Button = ({
   width = "auto",
   height = "auto",
   value = "",
+  variant = "blue",
   onClick,
   disabled = false,
+  boxShadow,
+  children,
 }) => {
   return (
     <StyledButton
@@ -13,8 +16,10 @@ const Button = ({
       height={height}
       onClick={onClick}
       disabled={disabled}
+      boxShadow={boxShadow}
+      variant={variant}
     >
-      {value}
+      {value || children}
     </StyledButton>
   );
 };
@@ -27,11 +32,23 @@ const StyledButton = styled.button`
   opacity: ${({ disabled }) => (disabled ? 0.4 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
   transition: all 0.3s;
-  background-color: #007bff;
   border: none;
   border-radius: 4px;
   color: white;
   cursor: pointer;
+  box-shadow: ${({ boxShadow }) =>
+    boxShadow && "rgba(0, 0, 0, 0.1) 0px 4px 6px;"}
+
+  ${({ variant }) => {
+    switch (variant) {
+      case "blue":
+        return "background-color: #007bff;";
+      case "green":
+        return "background-color: #2EC4B6";
+      case "default":
+        return "background-color: #F9F9F9";
+    }
+  }}
 
   &:hover {
     opacity: 0.8;
