@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PaymentHistoryForm from "../../components/HomePage/PaymentHistoryForm";
+import PaymentHistoryList from "../../components/HomePage/PaymentHistoryList";
 import PaymentHistoryMonth from "../../components/HomePage/PaymentHistoryMonth";
 import { DefaultLayout, Flex } from "../../components/ui";
 
@@ -9,6 +10,7 @@ const HomePage = () => {
       <Wrap>
         <PaymentHistoryForm />
         <PaymentHistoryMonth />
+        <PaymentHistoryList />
       </Wrap>
     </DefaultLayout>
   );
