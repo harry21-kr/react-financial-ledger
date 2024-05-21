@@ -1,7 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
-export * from "./Box";
-export * from "./Button";
-export * from "./DefaultLayout";
-export * from "./Flex";
-export * from "./Input";
-export * from "./Text";
+export { Box } from "./Box";
+export { Button } from "./Button";
+export { DefaultLayout } from "./DefaultLayout";
+export { Flex } from "./Flex";
+export { Input } from "./Input";
+export { Text } from "./Text";
