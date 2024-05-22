@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import EditPaymentHistory from "../../components/DetailPage/EditPaymentHistory";
-import PaymentHistoryDetail from "../../components/DetailPage/PaymentHistoryDetail";
+import {
+  EditPaymentHistory,
+  PaymentHistoryDetail,
+} from "../../components/DetailPage";
 import { Box, DefaultLayout, Flex } from "../../components/ui";
 
 const DetailPage = () => {

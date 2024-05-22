@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import PaymentHistoryForm from "../../components/HomePage/PaymentHistoryForm";
-import PaymentHistoryList from "../../components/HomePage/PaymentHistoryList";
-import PaymentHistoryMonth from "../../components/HomePage/PaymentHistoryMonth";
+import {
+  PaymentHistoryForm,
+  PaymentHistoryList,
+  PaymentHistoryMonth,
+} from "../../components/HomePage";
 import { DefaultLayout, Flex } from "../../components/ui";
 
 const HomePage = () => {
