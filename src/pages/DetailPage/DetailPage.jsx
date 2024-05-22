@@ -13,13 +13,18 @@ const DetailPage = () => {
   return (
     <DetailPageDefaultLayout>
       <Box>
-        <Flex $flexDirection="column" $justifyContent="center" $gap="12px">
+        <Flex
+          $flexDirection="column"
+          $justifyContent="center"
+          $alignItems="center"
+          $gap="12px"
+        >
           <Text $fontSize="14px">날짜: {date}</Text>
           <Text $fontSize="18px">분야: {item}</Text>
           <Text $fontSize="24px" $fontWeight="bold">
             {description}에
           </Text>
-          <Text $fontSize="24px" $fontWeight="bold" color="#007bff">
+          <Text $fontSize="24px" $fontWeight="bold" $color="#007bff">
             {numberWithCommas(amount)}
             {amount > 100000 ? "원이나 쓰셨네요! 참 대단해요!" : "원을 썻어요!"}
           </Text>

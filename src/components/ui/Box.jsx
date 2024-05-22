@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
-  width: 100%;
-  min-width: 375px;
-  max-width: 800px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 16px;
+  width: ${({ $width }) => $width ?? "100%"};
+  min-width: ${({ $minWidth }) => $minWidth ?? "375px"};
+  max-width: ${({ $maxWidth }) => $maxWidth ?? "800px"};
+  padding: ${({ $padding }) => $padding ?? "20px"};
+  background-color: ${({ $backgroundColor }) => $backgroundColor ?? "white"};
+  border-radius: ${({ $borderRadius }) => $borderRadius ?? "16px"};
 `;
 
 export default Box;

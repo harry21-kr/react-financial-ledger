@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
-export const Text = styled.p.attrs((props) => ({
-  $fontSize: props.$fontSize || "16px",
-  $fontWeight: props.$fontWeight || "normal",
-}))`
+export const Text = styled.p`
   font-size: ${({ $fontSize }) => $fontSize};
   font-weight: ${({ $fontWeight }) => $fontWeight};
-  color: ${({ color }) => color};
+  text-align: ${({ $textAlign }) => $textAlign};
+  color: ${({ $color }) => $color};
 `;
 
 export default Text;
