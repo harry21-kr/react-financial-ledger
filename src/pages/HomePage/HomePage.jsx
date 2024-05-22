@@ -28,6 +28,7 @@ export default HomePage;
 
 const Wrap = styled(Flex)`
   padding-top: 32px;
+  padding-bottom: 32px;
   flex-direction: column;
   gap: 32px;
 `;
