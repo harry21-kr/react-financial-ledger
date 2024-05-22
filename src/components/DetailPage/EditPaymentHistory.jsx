@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button, Flex, Input, Text } from "../ui";
 
-const EditPaymentHistory = ({
+export const EditPaymentHistory = ({
   item,
   setItem,
   handleConfirmEditItem,
@@ -73,8 +73,6 @@ const EditPaymentHistory = ({
     </>
   );
 };
-
-export default EditPaymentHistory;
 
 const EditConfirmButton = styled(Button)`
   background-color: #007bff;

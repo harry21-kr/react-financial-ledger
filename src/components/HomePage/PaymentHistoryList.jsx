@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { numberWithCommas } from "../../utils";
 import { Box, Button, Flex, Text } from "../ui";
 
-const PaymentHistoryList = ({ selectedMonth, list }) => {
+export const PaymentHistoryList = ({ selectedMonth, list }) => {
   const navigate = useNavigate();
   return (
     <Box>
@@ -32,8 +32,6 @@ const PaymentHistoryList = ({ selectedMonth, list }) => {
     </Box>
   );
 };
-
-export default PaymentHistoryList;
 
 const Wrap = styled(Flex)`
   flex-direction: column;

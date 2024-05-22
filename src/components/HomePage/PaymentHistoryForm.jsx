@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { Box, Button, Flex, Input, Text } from "../ui";
 
-const PaymentHistoryForm = ({ addList }) => {
+export const PaymentHistoryForm = ({ addList }) => {
   const [payItem, setPayItem] = useState({
     id: 0,
     date: "2024-05-21",
@@ -82,8 +82,6 @@ const PaymentHistoryForm = ({ addList }) => {
     </Box>
   );
 };
-
-export default PaymentHistoryForm;
 
 const Wrap = styled(Flex)`
   gap: 10px;

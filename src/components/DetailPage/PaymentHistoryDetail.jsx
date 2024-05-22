@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { numberWithCommas } from "../../utils";
 import { Button, Flex, Text } from "../ui";
 
-const PaymentHistoryDetail = ({ item, setIsEditMode, handleDeleteItem }) => {
+export const PaymentHistoryDetail = ({
+  item,
+  setIsEditMode,
+  handleDeleteItem,
+}) => {
   const { date, item: title, description, amount } = item;
   const navigate = useNavigate();
   return (
@@ -25,8 +29,6 @@ const PaymentHistoryDetail = ({ item, setIsEditMode, handleDeleteItem }) => {
     </>
   );
 };
-
-export default PaymentHistoryDetail;
 
 const EditButton = styled(Button)`
   background-color: #007bff;

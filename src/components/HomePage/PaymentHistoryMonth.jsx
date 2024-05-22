@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Box, Button, Flex } from "../ui";
 
-const PaymentHistoryMonth = ({ selectedMonth, setSelectedMonth }) => {
+export const PaymentHistoryMonth = ({ selectedMonth, setSelectedMonth }) => {
   return (
     <Box>
       <Wrap>
@@ -18,8 +18,6 @@ const PaymentHistoryMonth = ({ selectedMonth, setSelectedMonth }) => {
     </Box>
   );
 };
-
-export default PaymentHistoryMonth;
 
 const Wrap = styled(Flex)`
   gap: 20px;
