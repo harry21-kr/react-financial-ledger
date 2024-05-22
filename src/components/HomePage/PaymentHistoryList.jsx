@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Box, Button, Text } from "../ui";
+import { Box, Button, Flex, Text } from "../ui";
 
 const mockData = [
   {
@@ -54,22 +54,34 @@ const mockData = [
   },
 ];
 
-const PaymentHistoryList = () => {
+const PaymentHistoryList = ({ selectedMonth }) => {
   return (
     <Box>
-      {mockData.map(({ id, date, item, amount, description }) => (
-        <ListButton key={id}>
-          <Text>{date}</Text>
-          <Text>{item}</Text>
-          <Text>{amount}</Text>
-          <Text>{description}</Text>
-        </ListButton>
-      ))}
+      <Wrap>
+        {mockData
+          .filter(({ date }) => {
+            const formattedDate = new Date(date);
+            return formattedDate.getMonth() === selectedMonth - 1;
+          })
+          .map(({ id, date, item, amount, description }) => (
+            <ListButton key={id}>
+              <Text>{date}</Text>
+              <Text>{item}</Text>
+              <Text>{amount}</Text>
+              <Text>{description}</Text>
+            </ListButton>
+          ))}
+      </Wrap>
     </Box>
   );
 };
 
 export default PaymentHistoryList;
+
+const Wrap = styled(Flex)`
+  flex-direction: column;
+  gap: 16px;
+`;
 
 const ListButton = styled(Button)`
   width: 100%;

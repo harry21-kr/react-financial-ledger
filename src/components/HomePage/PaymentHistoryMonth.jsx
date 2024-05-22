@@ -1,9 +1,7 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { Box, Button, Flex } from "../ui";
 
-const PaymentHistoryMonth = () => {
-  const [selectedMonth, setSelectedMonth] = useState(1);
+const PaymentHistoryMonth = ({ selectedMonth, setSelectedMonth }) => {
   return (
     <Box>
       <Wrap>
