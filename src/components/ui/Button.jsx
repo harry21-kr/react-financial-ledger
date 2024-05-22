@@ -24,6 +24,14 @@ export const Button = styled.button`
           return "background-color: #F9F9F9";
       }
     }};
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 `;
 
 export default Button;

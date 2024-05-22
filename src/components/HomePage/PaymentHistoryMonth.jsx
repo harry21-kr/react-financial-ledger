@@ -35,12 +35,4 @@ const SelectMonthButton = styled(Button).attrs((props) => ({
   width: 104px;
   height: 60px;
   color: ${({ $isSelected }) => ($isSelected ? "white" : "black")};
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.5;
-  }
 `;
