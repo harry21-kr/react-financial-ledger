@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -10,6 +10,7 @@ import { Box, DefaultLayout, Flex } from "../../components/ui";
 const DetailPage = () => {
   const { listId } = useParams();
   const navigate = useNavigate();
+  const [items, setItems] = useState([]);
   const [item, setItem] = useState({
     id: listId,
     date: "2024-05-30",
@@ -18,7 +19,6 @@ const DetailPage = () => {
     description: "",
   });
   const [isEditMode, setIsEditMode] = useState(false);
-  const localItems = useRef(null);
 
   const handleConfirmEditItem = () => {
     if (!item.item.length) {
@@ -31,7 +31,7 @@ const DetailPage = () => {
       alert("올바른 내용을 입력해주세요");
       return;
     }
-    const newItems = localItems.current.map((prevItem) =>
+    const newItems = items.map((prevItem) =>
       prevItem.id === listId ? item : prevItem
     );
     localStorage.setItem("payItem", JSON.stringify(newItems));
@@ -40,20 +40,21 @@ const DetailPage = () => {
   };
 
   const handleCancelEditItem = () => {
-    setItem(localItems.current.find((item) => item.id === listId));
+    setItem(items.find((item) => item.id === listId));
     setIsEditMode(false);
   };
 
   const handleDeleteItem = () => {
-    const newItems = localItems.current.filter((item) => item.id !== listId);
+    const newItems = items.filter((item) => item.id !== listId);
     localStorage.setItem("payItem", JSON.stringify(newItems));
     alert("삭제 완료");
     navigate("/", { replace: true });
   };
 
   useEffect(() => {
-    localItems.current = JSON.parse(localStorage.getItem("payItem"));
-    setItem(localItems.current.find((item) => item.id === listId));
+    const localItems = JSON.parse(localStorage.getItem("payItem")) || [];
+    setItems(localItems);
+    setItem(localItems.find((item) => item.id === listId));
   }, [listId]);
 
   return (
