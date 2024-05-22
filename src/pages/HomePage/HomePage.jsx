@@ -4,18 +4,21 @@ import PaymentHistoryForm from "../../components/HomePage/PaymentHistoryForm";
 import PaymentHistoryList from "../../components/HomePage/PaymentHistoryList";
 import PaymentHistoryMonth from "../../components/HomePage/PaymentHistoryMonth";
 import { DefaultLayout, Flex } from "../../components/ui";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const HomePage = () => {
-  const [selectedMonth, setSelectedMonth] = useState(1);
+  const { item: list, addItem: addList } = useLocalStorage("payItem");
+  const [selectedMonth, setSelectedMonth] = useState(5);
+
   return (
     <DefaultLayout>
       <Wrap>
-        <PaymentHistoryForm />
+        <PaymentHistoryForm addList={addList} />
         <PaymentHistoryMonth
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
-        <PaymentHistoryList selectedMonth={selectedMonth} />
+        <PaymentHistoryList selectedMonth={selectedMonth} list={list} />
       </Wrap>
     </DefaultLayout>
   );

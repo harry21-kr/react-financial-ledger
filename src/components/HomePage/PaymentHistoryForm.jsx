@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { Box, Button, Flex, Input, Text } from "../ui";
 
-const PaymentHistoryForm = () => {
+const PaymentHistoryForm = ({ addList }) => {
   const [payItem, setPayItem] = useState({
     id: 0,
     date: "2024-05-21",
@@ -14,13 +14,7 @@ const PaymentHistoryForm = () => {
 
   const handleSubmitHistory = () => {
     const newPayItem = { ...payItem, id: uuidv4() };
-    const prevItems = JSON.parse(localStorage.getItem("payItem"));
-    localStorage.setItem(
-      "payItem",
-      prevItems
-        ? JSON.stringify([...prevItems, newPayItem])
-        : JSON.stringify([newPayItem])
-    );
+    addList(newPayItem);
     setPayItem((prevItem) => ({
       id: 0,
       date: prevItem.date,
