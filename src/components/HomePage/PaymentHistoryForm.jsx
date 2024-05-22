@@ -13,6 +13,16 @@ export const PaymentHistoryForm = ({ addList }) => {
   });
 
   const handleSubmitHistory = () => {
+    if (!payItem.item.length) {
+      alert("지출 항목을 입력해주세요");
+      return;
+    } else if (!payItem.amount) {
+      alert("금액을 입력해주세요");
+      return;
+    } else if (!payItem.description) {
+      alert("지출 내용을 입력해주세요");
+      return;
+    }
     const newPayItem = { ...payItem, id: uuidv4() };
     addList(newPayItem);
     setPayItem((prevItem) => ({
@@ -42,11 +52,10 @@ export const PaymentHistoryForm = ({ addList }) => {
           <Input
             type="text"
             value={payItem.item}
-            maxLength={10}
             placeholder="지출 항목"
-            onChange={(e) =>
-              setPayItem((prevItem) => ({ ...prevItem, item: e.target.value }))
-            }
+            onChange={(e) => {
+              setPayItem((prevItem) => ({ ...prevItem, item: e.target.value }));
+            }}
           />
         </InputWrap>
         <InputWrap>

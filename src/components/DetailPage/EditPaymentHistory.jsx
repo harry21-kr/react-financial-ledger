@@ -28,7 +28,7 @@ export const EditPaymentHistory = ({
           <Input
             type="text"
             maxLength={10}
-            placeholder={item.item}
+            value={item.item}
             onChange={(e) =>
               setItem((prevItem) => ({
                 ...prevItem,
@@ -41,7 +41,7 @@ export const EditPaymentHistory = ({
           <Text fontSize="14px">금액</Text>
           <Input
             type="number"
-            placeholder={item.amount}
+            value={item.amount}
             onChange={(e) =>
               setItem((prevItem) => ({
                 ...prevItem,
@@ -54,7 +54,7 @@ export const EditPaymentHistory = ({
           <Text fontSize="14px">내용</Text>
           <Input
             type="text"
-            placeholder={item.description}
+            value={item.description}
             onChange={(e) =>
               setItem((prevItem) => ({
                 ...prevItem,

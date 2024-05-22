@@ -21,6 +21,16 @@ const DetailPage = () => {
   const localItems = useRef(null);
 
   const handleConfirmEditItem = () => {
+    if (!item.item.length) {
+      alert("올바른 항목을 입력해주세요");
+      return;
+    } else if (!item.amount) {
+      alert("올바른 금액을 입력해주세요");
+      return;
+    } else if (!item.description.length) {
+      alert("올바른 내용을 입력해주세요");
+      return;
+    }
     const newItems = localItems.current.map((prevItem) =>
       prevItem.id === listId ? item : prevItem
     );
