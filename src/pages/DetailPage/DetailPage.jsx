@@ -1,15 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import {
-  Box,
-  Button,
-  DefaultLayout,
-  Flex,
-  Input,
-  Text,
-} from "../../components/ui";
-import { numberWithCommas } from "../../utils";
+import EditPaymentHistory from "../../components/DetailPage/EditPaymentHistory";
+import PaymentHistoryDetail from "../../components/DetailPage/PaymentHistoryDetail";
+import { Box, DefaultLayout, Flex } from "../../components/ui";
 
 const DetailPage = () => {
   const { listId } = useParams();
@@ -61,94 +55,18 @@ const DetailPage = () => {
             $gap="12px"
           >
             {isEditMode ? (
-              <>
-                <Flex $gap="10px">
-                  <Flex $flexDirection="column" $gap="4px">
-                    <Text fontSize="14px">날짜</Text>
-                    <Input
-                      type="date"
-                      value={item.date}
-                      onChange={(e) =>
-                        setItem((prevItem) => ({
-                          ...prevItem,
-                          date: e.target.value,
-                        }))
-                      }
-                    />
-                  </Flex>
-                  <Flex $flexDirection="column" $gap="4px">
-                    <Text fontSize="14px">항목</Text>
-                    <Input
-                      type="text"
-                      maxLength={10}
-                      placeholder={item.item}
-                      onChange={(e) =>
-                        setItem((prevItem) => ({
-                          ...prevItem,
-                          item: e.target.value,
-                        }))
-                      }
-                    />
-                  </Flex>
-                  <Flex $flexDirection="column" $gap="4px">
-                    <Text fontSize="14px">금액</Text>
-                    <Input
-                      type="number"
-                      placeholder={item.amount}
-                      onChange={(e) =>
-                        setItem((prevItem) => ({
-                          ...prevItem,
-                          amount: Number(e.target.value),
-                        }))
-                      }
-                    />
-                  </Flex>
-                  <Flex $flexDirection="column" $gap="4px">
-                    <Text fontSize="14px">내용</Text>
-                    <Input
-                      type="text"
-                      placeholder={item.description}
-                      onChange={(e) =>
-                        setItem((prevItem) => ({
-                          ...prevItem,
-                          description: e.target.value,
-                        }))
-                      }
-                    />
-                  </Flex>
-                </Flex>
-                <Flex $justifyContent="center" $gap="12px">
-                  <EditConfirmButton onClick={handleConfirmEditItem}>
-                    완료
-                  </EditConfirmButton>
-                  <EditCancelButton onClick={handleCancelEditItem}>
-                    취소
-                  </EditCancelButton>
-                </Flex>
-              </>
+              <EditPaymentHistory
+                item={item}
+                setItem={setItem}
+                handleCancelEditItem={handleCancelEditItem}
+                handleConfirmEditItem={handleConfirmEditItem}
+              />
             ) : (
-              <>
-                <Text $fontSize="14px">날짜: {item.date}</Text>
-                <Text $fontSize="18px">분야: {item.item}</Text>
-                <Text $fontSize="24px" $fontWeight="bold">
-                  {item.description}에
-                </Text>
-                <Text $fontSize="24px" $fontWeight="bold" $color="#007bff">
-                  {numberWithCommas(item.amount)}
-                  {item.amount > 100000
-                    ? "원이나 쓰셨네요! 참 대단해요!"
-                    : "원을 썻어요!"}
-                </Text>
-                <Flex $justifyContent="center" $gap="12px">
-                  <EditButton onClick={() => setIsEditMode(true)}>
-                    수정
-                  </EditButton>
-                  <DeleteButton onClick={handleDeleteItem}>삭제</DeleteButton>
-                  <BackButton onClick={() => navigate("/")}>
-                    뒤로 가기
-                  </BackButton>
-                </Flex>
-              </>
+              <PaymentHistoryDetail
+                item={item}
+                setIsEditMode={setIsEditMode}
+                handleDeleteItem={handleDeleteItem}
+              />
             )}
           </Flex>
         </Flex>
@@ -161,24 +79,4 @@ export default DetailPage;
 
 const DetailPageDefaultLayout = styled(DefaultLayout)`
   padding-top: 32px;
-`;
-
-const EditButton = styled(Button)`
-  background-color: #007bff;
-`;
-
-const EditConfirmButton = styled(Button)`
-  background-color: #007bff;
-`;
-
-const EditCancelButton = styled(Button)`
-  background-color: #ff4d4d;
-`;
-
-const DeleteButton = styled(Button)`
-  background-color: #ff4d4d;
-`;
-
-const BackButton = styled(Button)`
-  background-color: #6c757d;
 `;
