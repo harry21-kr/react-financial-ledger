@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Box, DefaultLayout, Flex, Text } from "../../components/ui";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import { numberWithCommas } from "../../utils";
 
 const DetailPage = () => {
   const { listId } = useParams();
@@ -19,7 +20,7 @@ const DetailPage = () => {
             {description}에
           </Text>
           <Text $fontSize="24px" $fontWeight="bold" color="#007bff">
-            {amount}
+            {numberWithCommas(amount)}
             {amount > 100000 ? "원이나 쓰셨네요! 참 대단해요!" : "원을 썻어요!"}
           </Text>
         </Flex>

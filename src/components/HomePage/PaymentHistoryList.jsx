@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { numberWithCommas } from "../../utils";
 import { Box, Button, Flex, Text } from "../ui";
 
 const PaymentHistoryList = ({ selectedMonth, list }) => {
@@ -23,7 +24,7 @@ const PaymentHistoryList = ({ selectedMonth, list }) => {
                 </Flex>
               </TextWrap>
               <Text color="#007bff" $fontWeight="bold">
-                {amount} 원
+                {numberWithCommas(amount)} 원
               </Text>
             </ListButton>
           ))}
