@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { usePaymentListDispatch } from "../../contexts/PaymentHistory/hooks";
 import InputField from "../common/InputField";
 import { Box, Button, Flex } from "../ui";
 
@@ -12,8 +13,10 @@ const initialPayItem = {
   description: "",
 };
 
-export const PaymentHistoryForm = ({ addList }) => {
+export const PaymentHistoryForm = () => {
   const [payItem, setPayItem] = useState(initialPayItem);
+
+  const dispatch = usePaymentListDispatch();
 
   const handleSubmitHistory = () => {
     if (!payItem.item.length) {
@@ -27,7 +30,8 @@ export const PaymentHistoryForm = ({ addList }) => {
       return;
     }
     const newPayItem = { ...payItem, id: uuidv4() };
-    addList(newPayItem);
+    dispatch({ type: "addItem", ...newPayItem });
+    // addList(newPayItem);
     setPayItem({ ...initialPayItem, date: payItem.date });
   };
 
