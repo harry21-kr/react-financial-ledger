@@ -16,14 +16,14 @@ export const PaymentHistoryList = ({ selectedMonth, list }) => {
         {filteredList.length ? (
           filteredList.map(({ id, date, item, amount, description }) => (
             <ListButton key={id} onClick={() => navigate(`/detail/${id}`)}>
-              <TextWrap>
+              <Flex $flexDirection="column" $gap="4px">
                 <Text $fontSize="14px">{date}</Text>
                 <Flex>
                   <Text color="#007bff" $fontWeight="bold">
                     {item}&nbsp;-&nbsp;{description}
                   </Text>
                 </Flex>
-              </TextWrap>
+              </Flex>
               <Text color="#007bff" $fontWeight="bold">
                 {numberWithCommas(amount)} 원
               </Text>
@@ -36,11 +36,6 @@ export const PaymentHistoryList = ({ selectedMonth, list }) => {
     </Box>
   );
 };
-
-const TextWrap = styled(Flex)`
-  flex-direction: column;
-  gap: 4px;
-`;
 
 const ListButton = styled(Button)`
   display: flex;
