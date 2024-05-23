@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { addHistoryItem } from "../../store/paymentHistory/paymentHistorySlice";
 import InputField from "../common/InputField";
 import { Box, Button, Flex } from "../ui";
 
-const initialPayItem = {
+const initialPaymentHistoryItem = {
   id: 0,
   date: "2024-05-21",
   item: "",
@@ -12,23 +14,30 @@ const initialPayItem = {
   description: "",
 };
 
-export const PaymentHistoryForm = ({ addList }) => {
-  const [payItem, setPayItem] = useState(initialPayItem);
+export const PaymentHistoryForm = () => {
+  const [paymentHistoryItem, setPaymentHistoryItem] = useState(
+    initialPaymentHistoryItem
+  );
+
+  const dispatch = useDispatch();
 
   const handleSubmitHistory = () => {
-    if (!payItem.item.length) {
+    if (!paymentHistoryItem.item.length) {
       alert("지출 항목을 입력해주세요");
       return;
-    } else if (!payItem.amount) {
+    } else if (!paymentHistoryItem.amount) {
       alert("금액을 입력해주세요");
       return;
-    } else if (!payItem.description) {
+    } else if (!paymentHistoryItem.description) {
       alert("지출 내용을 입력해주세요");
       return;
     }
-    const newPayItem = { ...payItem, id: uuidv4() };
-    addList(newPayItem);
-    setPayItem({ ...initialPayItem, date: payItem.date });
+    const newPaymentHistoryItem = { ...paymentHistoryItem, id: uuidv4() };
+    dispatch(addHistoryItem(newPaymentHistoryItem));
+    setPaymentHistoryItem({
+      ...initialPaymentHistoryItem,
+      date: paymentHistoryItem.date,
+    });
   };
 
   return (
@@ -37,27 +46,33 @@ export const PaymentHistoryForm = ({ addList }) => {
         <InputField
           label="날짜"
           type="date"
-          value={payItem.date}
+          value={paymentHistoryItem.date}
           onChange={(e) =>
-            setPayItem((prevItem) => ({ ...prevItem, date: e.target.value }))
+            setPaymentHistoryItem((prevItem) => ({
+              ...prevItem,
+              date: e.target.value,
+            }))
           }
         />
         <InputField
           label="항목"
           type="text"
-          value={payItem.item}
+          value={paymentHistoryItem.item}
           placeholder="지출 항목"
           onChange={(e) =>
-            setPayItem((prevItem) => ({ ...prevItem, item: e.target.value }))
+            setPaymentHistoryItem((prevItem) => ({
+              ...prevItem,
+              item: e.target.value,
+            }))
           }
         />
         <InputField
           label="금액"
           type="number"
-          value={payItem.amount}
+          value={paymentHistoryItem.amount}
           placeholder="지출 금액"
           onChange={(e) =>
-            setPayItem((prevItem) => ({
+            setPaymentHistoryItem((prevItem) => ({
               ...prevItem,
               amount: Number(e.target.value),
             }))
@@ -66,10 +81,10 @@ export const PaymentHistoryForm = ({ addList }) => {
         <InputField
           label="내용"
           type="text"
-          value={payItem.description}
+          value={paymentHistoryItem.description}
           placeholder="지출 내용"
           onChange={(e) =>
-            setPayItem((prevItem) => ({
+            setPaymentHistoryItem((prevItem) => ({
               ...prevItem,
               description: e.target.value,
             }))

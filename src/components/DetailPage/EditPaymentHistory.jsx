@@ -1,22 +1,39 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { editHistoryItem } from "../../store/paymentHistory/paymentHistorySlice";
 import InputField from "../common/InputField";
 import { Button, Flex } from "../ui";
 
-export const EditPaymentHistory = ({
-  item,
-  setItem,
-  handleConfirmEditItem,
-  handleCancelEditItem,
-}) => {
+export const EditPaymentHistory = ({ item, setIsEditMode }) => {
+  const [newItem, setNewItem] = useState(item);
+
+  const dispatch = useDispatch();
+
+  const handleEditItem = () => {
+    if (!newItem.item.length) {
+      alert("지출 항목을 입력해주세요");
+      return;
+    } else if (!newItem.amount) {
+      alert("금액을 입력해주세요");
+      return;
+    } else if (!newItem.description) {
+      alert("지출 내용을 입력해주세요");
+      return;
+    }
+    dispatch(editHistoryItem(newItem));
+    setIsEditMode(false);
+  };
+
   return (
     <>
       <Flex $gap="10px">
         <InputField
           label="날짜"
           type="date"
-          value={item.date}
+          value={newItem.date}
           onChange={(e) =>
-            setItem((prevItem) => ({
+            setNewItem((prevItem) => ({
               ...prevItem,
               date: e.target.value,
             }))
@@ -25,11 +42,11 @@ export const EditPaymentHistory = ({
         <InputField
           label="항목"
           type="text"
-          value={item.item}
+          value={newItem.item}
           placeholder="지출 항목"
           maxLength={10}
           onChange={(e) =>
-            setItem((prevItem) => ({
+            setNewItem((prevItem) => ({
               ...prevItem,
               item: e.target.value,
             }))
@@ -38,10 +55,10 @@ export const EditPaymentHistory = ({
         <InputField
           label="금액"
           type="number"
-          value={item.amount}
+          value={newItem.amount}
           placeholder="지출 금액"
           onChange={(e) =>
-            setItem((prevItem) => ({
+            setNewItem((prevItem) => ({
               ...prevItem,
               amount: Number(e.target.value),
             }))
@@ -50,10 +67,10 @@ export const EditPaymentHistory = ({
         <InputField
           label="내용"
           type="text"
-          value={item.description}
+          value={newItem.description}
           placeholder="지출 내용"
           onChange={(e) =>
-            setItem((prevItem) => ({
+            setNewItem((prevItem) => ({
               ...prevItem,
               description: e.target.value,
             }))
@@ -61,10 +78,10 @@ export const EditPaymentHistory = ({
         />
       </Flex>
       <Flex $justifyContent="center" $gap="12px">
-        <EditConfirmButton onClick={handleConfirmEditItem}>
-          완료
-        </EditConfirmButton>
-        <EditCancelButton onClick={handleCancelEditItem}>취소</EditCancelButton>
+        <EditConfirmButton onClick={handleEditItem}>완료</EditConfirmButton>
+        <EditCancelButton onClick={() => setIsEditMode(false)}>
+          취소
+        </EditCancelButton>
       </Flex>
     </>
   );

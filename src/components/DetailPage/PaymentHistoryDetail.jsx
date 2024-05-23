@@ -1,15 +1,24 @@
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { deleteHistoryItem } from "../../store/paymentHistory/paymentHistorySlice";
 import { numberWithCommas } from "../../utils";
 import { Button, Flex, Text } from "../ui";
 
-export const PaymentHistoryDetail = ({
-  item,
-  setIsEditMode,
-  handleDeleteItem,
-}) => {
+export const PaymentHistoryDetail = ({ item, setIsEditMode }) => {
   const { date, item: title, description, amount } = item;
+  const { listId } = useParams();
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const handleDeleteItem = () => {
+    if (confirm("정말 삭제하시겠습니까?")) {
+      dispatch(deleteHistoryItem(listId));
+      navigate("/");
+    }
+  };
+
   return (
     <>
       <Text $fontSize="14px">날짜: {date}</Text>

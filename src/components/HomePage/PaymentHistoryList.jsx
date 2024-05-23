@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { usePaymentHistory } from "../../store/paymentHistory/hooks";
 import { numberWithCommas } from "../../utils";
 import { Box, Button, Flex, Text } from "../ui";
 
-export const PaymentHistoryList = ({ selectedMonth, list }) => {
+export const PaymentHistoryList = ({ selectedMonth }) => {
   const navigate = useNavigate();
-  const filteredList = list.filter(({ date }) => {
+
+  const paymentHistoryList = usePaymentHistory();
+
+  const filteredList = paymentHistoryList.filter(({ date }) => {
     const formattedDate = new Date(date);
     return formattedDate.getMonth() + 1 === selectedMonth;
   });
