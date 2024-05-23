@@ -4,7 +4,7 @@ import { Box, Button, Flex } from "../ui";
 export const PaymentHistoryMonth = ({ selectedMonth, setSelectedMonth }) => {
   return (
     <Box>
-      <Wrap>
+      <Flex $justifyContent="center" $gap="20px" $flexWrap="wrap">
         {Array.from({ length: 12 }).map((_, idx) => (
           <SelectMonthButton
             key={idx}
@@ -14,20 +14,12 @@ export const PaymentHistoryMonth = ({ selectedMonth, setSelectedMonth }) => {
             {idx + 1}월
           </SelectMonthButton>
         ))}
-      </Wrap>
+      </Flex>
     </Box>
   );
 };
 
-const Wrap = styled(Flex)`
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
-const SelectMonthButton = styled(Button).attrs((props) => ({
-  $isSelected: props.$isSelected || false,
-}))`
+const SelectMonthButton = styled(Button)`
   background-color: ${({ $isSelected }) =>
     $isSelected ? "#2ec4b6" : "#F6F7FA"};
   width: 104px;

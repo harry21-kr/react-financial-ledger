@@ -6,6 +6,7 @@ export const Flex = styled.div`
   justify-content: ${({ $justifyContent }) => $justifyContent};
   align-items: ${({ $alignItems }) => $alignItems};
   gap: ${({ $gap }) => $gap};
+  flex-wrap: ${({ $flexWrap }) => $flexWrap};
 `;
 
 export default Flex;
