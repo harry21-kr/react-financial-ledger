@@ -5,15 +5,16 @@ import { Box, Button, Flex, Text } from "../ui";
 
 export const PaymentHistoryList = ({ selectedMonth, list }) => {
   const navigate = useNavigate();
+  const filteredList = list.filter(({ date }) => {
+    const formattedDate = new Date(date);
+    return formattedDate.getMonth() + 1 === selectedMonth;
+  });
+
   return (
     <Box>
-      <Wrap>
-        {list
-          ?.filter(({ date }) => {
-            const formattedDate = new Date(date);
-            return formattedDate.getMonth() === selectedMonth - 1;
-          })
-          .map(({ id, date, item, amount, description }) => (
+      <Flex $flexDirection="column" $gap="16px">
+        {filteredList.length ? (
+          filteredList.map(({ id, date, item, amount, description }) => (
             <ListButton key={id} onClick={() => navigate(`/detail/${id}`)}>
               <TextWrap>
                 <Text $fontSize="14px">{date}</Text>
@@ -27,16 +28,14 @@ export const PaymentHistoryList = ({ selectedMonth, list }) => {
                 {numberWithCommas(amount)} 원
               </Text>
             </ListButton>
-          ))}
-      </Wrap>
+          ))
+        ) : (
+          <Text>{selectedMonth}월의 지출 내역이 없습니다.</Text>
+        )}
+      </Flex>
     </Box>
   );
 };
-
-const Wrap = styled(Flex)`
-  flex-direction: column;
-  gap: 16px;
-`;
 
 const TextWrap = styled(Flex)`
   flex-direction: column;
