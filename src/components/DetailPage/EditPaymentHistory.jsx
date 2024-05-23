@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Button, Flex, Input, Text } from "../ui";
+import InputField from "../InputField";
+import { Button, Flex } from "../ui";
 
 export const EditPaymentHistory = ({
   item,
@@ -10,59 +11,54 @@ export const EditPaymentHistory = ({
   return (
     <>
       <Flex $gap="10px">
-        <Flex $flexDirection="column" $gap="4px">
-          <Text fontSize="14px">날짜</Text>
-          <Input
-            type="date"
-            value={item.date}
-            onChange={(e) =>
-              setItem((prevItem) => ({
-                ...prevItem,
-                date: e.target.value,
-              }))
-            }
-          />
-        </Flex>
-        <Flex $flexDirection="column" $gap="4px">
-          <Text fontSize="14px">항목</Text>
-          <Input
-            type="text"
-            maxLength={10}
-            value={item.item}
-            onChange={(e) =>
-              setItem((prevItem) => ({
-                ...prevItem,
-                item: e.target.value,
-              }))
-            }
-          />
-        </Flex>
-        <Flex $flexDirection="column" $gap="4px">
-          <Text fontSize="14px">금액</Text>
-          <Input
-            type="number"
-            value={item.amount}
-            onChange={(e) =>
-              setItem((prevItem) => ({
-                ...prevItem,
-                amount: Number(e.target.value),
-              }))
-            }
-          />
-        </Flex>
-        <Flex $flexDirection="column" $gap="4px">
-          <Text fontSize="14px">내용</Text>
-          <Input
-            type="text"
-            value={item.description}
-            onChange={(e) =>
-              setItem((prevItem) => ({
-                ...prevItem,
-                description: e.target.value,
-              }))
-            }
-          />
-        </Flex>
+        <InputField
+          label="날짜"
+          type="date"
+          value={item.date}
+          onChange={(e) =>
+            setItem((prevItem) => ({
+              ...prevItem,
+              date: e.target.value,
+            }))
+          }
+        />
+        <InputField
+          label="항목"
+          type="text"
+          value={item.item}
+          placeholder="지출 항목"
+          maxLength={10}
+          onChange={(e) =>
+            setItem((prevItem) => ({
+              ...prevItem,
+              item: e.target.value,
+            }))
+          }
+        />
+        <InputField
+          label="금액"
+          type="number"
+          value={item.amount}
+          placeholder="지출 금액"
+          onChange={(e) =>
+            setItem((prevItem) => ({
+              ...prevItem,
+              amount: Number(e.target.value),
+            }))
+          }
+        />
+        <InputField
+          label="내용"
+          type="text"
+          value={item.description}
+          placeholder="지출 내용"
+          onChange={(e) =>
+            setItem((prevItem) => ({
+              ...prevItem,
+              description: e.target.value,
+            }))
+          }
+        />
       </Flex>
       <Flex $justifyContent="center" $gap="12px">
         <EditConfirmButton onClick={handleConfirmEditItem}>
