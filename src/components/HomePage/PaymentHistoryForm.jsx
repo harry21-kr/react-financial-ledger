@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import InputField from "../InputField";
+import InputField from "../common/InputField";
 import { Box, Button, Flex } from "../ui";
 
 const initialPayItem = {

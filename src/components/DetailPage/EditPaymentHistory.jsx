@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import InputField from "../InputField";
+import InputField from "../common/InputField";
 import { Button, Flex } from "../ui";
 
 export const EditPaymentHistory = ({

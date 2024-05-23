@@ -1,4 +1,4 @@
-import { Flex, Input, Text } from "../ui";
+import { Flex, Input, Text } from "../../ui";
 
 const InputField = ({ label, type, value, placeholder, onChange }) => {
   return (
