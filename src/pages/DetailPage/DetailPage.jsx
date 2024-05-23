@@ -34,6 +34,7 @@ const DetailPage = () => {
     const newItems = items.map((prevItem) =>
       prevItem.id === listId ? item : prevItem
     );
+    setItems(newItems);
     localStorage.setItem("payItem", JSON.stringify(newItems));
     alert("수정 완료");
     setIsEditMode(false);
