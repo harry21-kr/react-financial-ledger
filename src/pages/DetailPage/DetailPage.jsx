@@ -8,20 +8,20 @@ import {
 import { Box, DefaultLayout, Flex } from "../../components/ui";
 
 const DetailPage = () => {
-  const { listId } = useParams();
+  const { itemId } = useParams();
   const navigate = useNavigate();
-  const [items, setItems] = useState([]);
+  const [paymentHistoryList, setPaymentHistoryList] = useState([]);
   const [item, setItem] = useState({
-    id: listId,
+    id: itemId,
     date: "2024-05-30",
-    item: "",
+    title: "",
     amount: 0,
     description: "",
   });
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const handleConfirmEditItem = () => {
-    if (!item.item.length) {
+  const handleEditItem = () => {
+    if (!item.title.length) {
       alert("올바른 항목을 입력해주세요");
       return;
     } else if (!item.amount) {
@@ -31,32 +31,40 @@ const DetailPage = () => {
       alert("올바른 내용을 입력해주세요");
       return;
     }
-    const newItems = items.map((prevItem) =>
-      prevItem.id === listId ? item : prevItem
+    const newPaymentHistoryList = paymentHistoryList.map((prevItem) =>
+      prevItem.id === itemId ? item : prevItem
     );
-    setItems(newItems);
-    localStorage.setItem("payItem", JSON.stringify(newItems));
+    setPaymentHistoryList(newPaymentHistoryList);
+    localStorage.setItem(
+      "paymentHistory",
+      JSON.stringify(newPaymentHistoryList)
+    );
     alert("수정 완료");
     setIsEditMode(false);
   };
 
   const handleCancelEditItem = () => {
-    setItem(items.find((item) => item.id === listId));
+    setItem(paymentHistoryList.find((item) => item.id === itemId));
     setIsEditMode(false);
   };
 
   const handleDeleteItem = () => {
-    const newItems = items.filter((item) => item.id !== listId);
-    localStorage.setItem("payItem", JSON.stringify(newItems));
+    const newPaymentHistoryList = paymentHistoryList.filter(
+      (item) => item.id !== itemId
+    );
+    localStorage.setItem(
+      "paymentHistory",
+      JSON.stringify(newPaymentHistoryList)
+    );
     alert("삭제 완료");
     navigate("/", { replace: true });
   };
 
   useEffect(() => {
-    const localItems = JSON.parse(localStorage.getItem("payItem")) || [];
-    setItems(localItems);
-    setItem(localItems.find((item) => item.id === listId));
-  }, [listId]);
+    const localItems = JSON.parse(localStorage.getItem("paymentHistory")) || [];
+    setPaymentHistoryList(localItems);
+    setItem(localItems.find((item) => item.id === itemId));
+  }, [itemId]);
 
   return (
     <DetailPageDefaultLayout>
@@ -73,7 +81,7 @@ const DetailPage = () => {
                 item={item}
                 setItem={setItem}
                 handleCancelEditItem={handleCancelEditItem}
-                handleConfirmEditItem={handleConfirmEditItem}
+                handleEditItem={handleEditItem}
               />
             ) : (
               <PaymentHistoryDetail

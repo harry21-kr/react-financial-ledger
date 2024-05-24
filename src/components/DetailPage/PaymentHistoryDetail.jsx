@@ -8,7 +8,7 @@ export const PaymentHistoryDetail = ({
   setIsEditMode,
   handleDeleteItem,
 }) => {
-  const { date, item: title, description, amount } = item;
+  const { date, title, description, amount } = item;
   const navigate = useNavigate();
   return (
     <>

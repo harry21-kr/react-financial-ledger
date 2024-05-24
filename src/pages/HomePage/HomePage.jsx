@@ -8,39 +8,45 @@ import {
 import { DefaultLayout, Flex } from "../../components/ui";
 
 const HomePage = () => {
-  const [list, setList] = useState([]);
+  const [paymentHistoryList, setPaymentHistoryList] = useState([]);
   const [selectedMonth, setSelectedMonth] = useState(5);
 
-  const addList = (value) => {
-    const formattedItem = JSON.stringify([...list, value]);
-    localStorage.setItem("payItem", formattedItem);
-    setList([...list, value]);
+  const addPaymentHistoryList = (value) => {
+    const formattedList = JSON.stringify([...paymentHistoryList, value]);
+    localStorage.setItem("paymentHistory", formattedList);
+    setPaymentHistoryList([...paymentHistoryList, value]);
   };
 
   useEffect(() => {
-    const localItem = JSON.parse(localStorage.getItem("payItem"));
-    setList(localItem ?? []);
+    const localItem = JSON.parse(localStorage.getItem("paymentHistory"));
+    setPaymentHistoryList(localItem ?? []);
   }, []);
 
   return (
-    <DefaultLayout>
+    <HomePageDefaultLayout>
       <Wrap>
-        <PaymentHistoryForm addList={addList} />
+        <PaymentHistoryForm addPaymentHistoryList={addPaymentHistoryList} />
         <PaymentHistoryMonth
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
-        <PaymentHistoryList selectedMonth={selectedMonth} list={list} />
+        <PaymentHistoryList
+          selectedMonth={selectedMonth}
+          list={paymentHistoryList}
+        />
       </Wrap>
-    </DefaultLayout>
+    </HomePageDefaultLayout>
   );
 };
 
 export default HomePage;
 
-const Wrap = styled(Flex)`
+const HomePageDefaultLayout = styled(DefaultLayout)`
   padding-top: 32px;
   padding-bottom: 32px;
+`;
+
+const Wrap = styled(Flex)`
   flex-direction: column;
   gap: 32px;
 `;

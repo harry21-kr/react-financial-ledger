@@ -5,16 +5,17 @@ import { Button, Flex } from "../ui";
 export const EditPaymentHistory = ({
   item,
   setItem,
-  handleConfirmEditItem,
+  handleEditItem,
   handleCancelEditItem,
 }) => {
+  const { date, title, amount, description } = item;
   return (
     <>
       <Flex $gap="10px">
         <InputField
           label="날짜"
           type="date"
-          value={item.date}
+          value={date}
           onChange={(e) =>
             setItem((prevItem) => ({
               ...prevItem,
@@ -25,20 +26,20 @@ export const EditPaymentHistory = ({
         <InputField
           label="항목"
           type="text"
-          value={item.item}
+          value={title}
           placeholder="지출 항목"
           maxLength={10}
           onChange={(e) =>
             setItem((prevItem) => ({
               ...prevItem,
-              item: e.target.value,
+              title: e.target.value,
             }))
           }
         />
         <InputField
           label="금액"
           type="number"
-          value={item.amount}
+          value={amount}
           placeholder="지출 금액"
           onChange={(e) =>
             setItem((prevItem) => ({
@@ -50,7 +51,7 @@ export const EditPaymentHistory = ({
         <InputField
           label="내용"
           type="text"
-          value={item.description}
+          value={description}
           placeholder="지출 내용"
           onChange={(e) =>
             setItem((prevItem) => ({
@@ -61,9 +62,7 @@ export const EditPaymentHistory = ({
         />
       </Flex>
       <Flex $justifyContent="center" $gap="12px">
-        <EditConfirmButton onClick={handleConfirmEditItem}>
-          완료
-        </EditConfirmButton>
+        <EditConfirmButton onClick={handleEditItem}>완료</EditConfirmButton>
         <EditCancelButton onClick={handleCancelEditItem}>취소</EditCancelButton>
       </Flex>
     </>
