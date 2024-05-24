@@ -11,7 +11,7 @@ export const EditPaymentHistory = ({ item, setIsEditMode }) => {
   const dispatch = useDispatch();
 
   const handleEditItem = () => {
-    if (!newItem.item.length) {
+    if (!newItem.title.length) {
       alert("지출 항목을 입력해주세요");
       return;
     } else if (!newItem.amount) {
@@ -42,13 +42,13 @@ export const EditPaymentHistory = ({ item, setIsEditMode }) => {
         <InputField
           label="항목"
           type="text"
-          value={newItem.item}
+          value={newItem.title}
           placeholder="지출 항목"
           maxLength={10}
           onChange={(e) =>
             setNewItem((prevItem) => ({
               ...prevItem,
-              item: e.target.value,
+              title: e.target.value,
             }))
           }
         />

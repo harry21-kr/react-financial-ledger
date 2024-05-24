@@ -6,15 +6,15 @@ import {
   PaymentHistoryDetail,
 } from "../../components/DetailPage";
 import { Box, DefaultLayout, Flex } from "../../components/ui";
-import { usePaymentHistory } from "../../store/paymentHistory/hooks";
+import { usePaymentHistoryList } from "../../store/paymentHistory/hooks";
 
 const DetailPage = () => {
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const { listId } = useParams();
+  const { itemId } = useParams();
 
-  const paymentHistoryList = usePaymentHistory();
-  const targetItem = paymentHistoryList.find((item) => item.id === listId);
+  const paymentHistoryList = usePaymentHistoryList();
+  const targetItem = paymentHistoryList.find((item) => item.id === itemId);
 
   return (
     <DetailPageDefaultLayout>

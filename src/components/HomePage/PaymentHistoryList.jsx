@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { usePaymentHistory } from "../../store/paymentHistory/hooks";
+import { usePaymentHistoryList } from "../../store/paymentHistory/hooks";
 import { numberWithCommas } from "../../utils";
 import { Box, Button, Flex, Text } from "../ui";
 
 export const PaymentHistoryList = ({ selectedMonth }) => {
   const navigate = useNavigate();
 
-  const paymentHistoryList = usePaymentHistory();
+  const paymentHistoryList = usePaymentHistoryList();
 
   const filteredList = paymentHistoryList.filter(({ date }) => {
     const formattedDate = new Date(date);
@@ -18,13 +18,13 @@ export const PaymentHistoryList = ({ selectedMonth }) => {
     <Box>
       <Flex $flexDirection="column" $gap="16px">
         {filteredList.length ? (
-          filteredList.map(({ id, date, item, amount, description }) => (
+          filteredList.map(({ id, date, title, amount, description }) => (
             <ListButton key={id} onClick={() => navigate(`/detail/${id}`)}>
               <Flex $flexDirection="column" $gap="4px">
                 <Text $fontSize="14px">{date}</Text>
                 <Flex>
                   <Text color="#007bff" $fontWeight="bold">
-                    {item}&nbsp;-&nbsp;{description}
+                    {title}&nbsp;-&nbsp;{description}
                   </Text>
                 </Flex>
               </Flex>

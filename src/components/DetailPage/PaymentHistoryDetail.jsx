@@ -6,15 +6,15 @@ import { numberWithCommas } from "../../utils";
 import { Button, Flex, Text } from "../ui";
 
 export const PaymentHistoryDetail = ({ item, setIsEditMode }) => {
-  const { date, item: title, description, amount } = item;
-  const { listId } = useParams();
+  const { date, title, description, amount } = item;
+  const { itemId } = useParams();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   const handleDeleteItem = () => {
     if (confirm("정말 삭제하시겠습니까?")) {
-      dispatch(deleteHistoryItem(listId));
+      dispatch(deleteHistoryItem(itemId));
       navigate("/");
     }
   };
