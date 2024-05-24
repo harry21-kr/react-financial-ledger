@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { usePaymentListDispatch } from "../../contexts/PaymentHistory/hooks";
+import { usePaymentHistoryListDispatch } from "../../contexts/PaymentHistory/hooks";
 import { numberWithCommas } from "../../utils";
 import { Button, Flex, Text } from "../ui";
 
 export const PaymentHistoryDetail = ({ item, setIsEditMode }) => {
-  const { id, date, item: title, description, amount } = item;
+  const { id, date, title, description, amount } = item;
   const navigate = useNavigate();
 
-  const dispatch = usePaymentListDispatch();
+  const dispatch = usePaymentHistoryListDispatch();
 
   const handleDeleteItem = () => {
-    dispatch({ type: "deleteItem", id: id });
+    dispatch({ type: "deletePaymentHistoryItem", id: id });
     alert("삭제 완료");
     navigate("/", { replace: true });
   };

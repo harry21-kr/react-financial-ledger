@@ -1,4 +1,4 @@
 export const getInitialHistoryList = () => {
-  const storedHistory = localStorage.getItem("payItem");
-  return storedHistory ? JSON.parse(storedHistory) : [];
+  const storedPaymentHistoryList = localStorage.getItem("paymentHistory");
+  return storedPaymentHistoryList ? JSON.parse(storedPaymentHistoryList) : [];
 };

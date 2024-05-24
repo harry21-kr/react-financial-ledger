@@ -6,15 +6,15 @@ import {
   PaymentHistoryDetail,
 } from "../../components/DetailPage";
 import { Box, DefaultLayout, Flex } from "../../components/ui";
-import { usePaymentList } from "../../contexts/PaymentHistory/hooks";
+import { usePaymentHistoryList } from "../../contexts/PaymentHistory/hooks";
 
 const DetailPage = () => {
-  const { listId } = useParams();
+  const { itemId } = useParams();
 
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const items = usePaymentList();
-  const item = items.find((item) => item.id === listId);
+  const paymentHistoryList = usePaymentHistoryList();
+  const targetItem = paymentHistoryList.find((item) => item.id === itemId);
 
   return (
     <DetailPageDefaultLayout>
@@ -27,9 +27,15 @@ const DetailPage = () => {
             $gap="12px"
           >
             {isEditMode ? (
-              <EditPaymentHistory item={item} setIsEditMode={setIsEditMode} />
+              <EditPaymentHistory
+                item={targetItem}
+                setIsEditMode={setIsEditMode}
+              />
             ) : (
-              <PaymentHistoryDetail item={item} setIsEditMode={setIsEditMode} />
+              <PaymentHistoryDetail
+                item={targetItem}
+                setIsEditMode={setIsEditMode}
+              />
             )}
           </Flex>
         </Flex>

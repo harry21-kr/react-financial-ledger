@@ -4,10 +4,10 @@ import {
   PaymentHistoryDispatchContext,
 } from "./Provider";
 
-export const usePaymentList = () => {
+export const usePaymentHistoryList = () => {
   return useContext(PaymentHistoryContext);
 };
 
-export const usePaymentListDispatch = () => {
+export const usePaymentHistoryListDispatch = () => {
   return useContext(PaymentHistoryDispatchContext);
 };

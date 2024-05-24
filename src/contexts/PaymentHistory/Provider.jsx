@@ -1,23 +1,23 @@
 import { createContext, useEffect, useReducer } from "react";
-import { historyListReducer } from ".";
+import { paymentHistoryListReducer } from ".";
 import { getInitialHistoryList } from "./helpers";
 
 export const PaymentHistoryContext = createContext(null);
 export const PaymentHistoryDispatchContext = createContext(null);
 
 const PaymentHistoryProvider = ({ children }) => {
-  const [historyList, dispatch] = useReducer(
-    historyListReducer,
+  const [paymentHistoryList, dispatch] = useReducer(
+    paymentHistoryListReducer,
     [],
     getInitialHistoryList
   );
 
   useEffect(() => {
-    localStorage.setItem("payItem", JSON.stringify(historyList));
-  }, [historyList]);
+    localStorage.setItem("paymentHistory", JSON.stringify(paymentHistoryList));
+  }, [paymentHistoryList]);
 
   return (
-    <PaymentHistoryContext.Provider value={historyList}>
+    <PaymentHistoryContext.Provider value={paymentHistoryList}>
       <PaymentHistoryDispatchContext.Provider value={dispatch}>
         {children}
       </PaymentHistoryDispatchContext.Provider>

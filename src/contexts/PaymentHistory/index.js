@@ -1,26 +1,26 @@
-export const historyListReducer = (list, action) => {
+export const paymentHistoryListReducer = (list, action) => {
   switch (action.type) {
-    case "addItem":
+    case "addPaymentHistoryItem":
       return [
         ...list,
         {
           id: action.id,
-          item: action.item,
+          title: action.title,
           date: action.date,
           amount: action.amount,
           description: action.description,
         },
       ];
 
-    case "deleteItem":
+    case "deletePaymentHistoryItem":
       return list.filter((item) => item.id !== action.id);
 
-    case "editItem":
+    case "editPaymentHistoryItem":
       return list.map((prevItem) =>
         prevItem.id === action.id
           ? {
               id: prevItem.id,
-              item: action.item,
+              title: action.title,
               date: action.date,
               amount: action.amount,
               description: action.description,

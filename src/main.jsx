@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/detail/:listId" element={<DetailPage />} />
+          <Route path="/detail/:itemId" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
     </PaymentHistoryProvider>

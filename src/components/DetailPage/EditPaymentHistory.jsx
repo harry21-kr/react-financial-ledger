@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 import { useState } from "react";
-import { usePaymentListDispatch } from "../../contexts/PaymentHistory/hooks";
+import { usePaymentHistoryListDispatch } from "../../contexts/PaymentHistory/hooks";
 import InputField from "../common/InputField";
 import { Button, Flex } from "../ui";
 
 export const EditPaymentHistory = ({ item, setIsEditMode }) => {
   const [newItem, setNewItem] = useState(item);
 
-  const dispatch = usePaymentListDispatch();
+  const dispatch = usePaymentHistoryListDispatch();
 
-  const handleConfirmEditItem = () => {
-    if (!newItem.item.length) {
+  const handleEditItem = () => {
+    if (!newItem.title.length) {
       alert("올바른 항목을 입력해주세요");
       return;
     } else if (!newItem.amount) {
@@ -21,7 +21,7 @@ export const EditPaymentHistory = ({ item, setIsEditMode }) => {
       alert("올바른 내용을 입력해주세요");
       return;
     }
-    dispatch({ type: "editItem", ...newItem });
+    dispatch({ type: "editPaymentHistoryItem", ...newItem });
     alert("수정 완료");
     setIsEditMode(false);
   };
@@ -43,13 +43,13 @@ export const EditPaymentHistory = ({ item, setIsEditMode }) => {
         <InputField
           label="항목"
           type="text"
-          value={newItem.item}
+          value={newItem.title}
           placeholder="지출 항목"
           maxLength={10}
           onChange={(e) =>
             setNewItem((prevItem) => ({
               ...prevItem,
-              item: e.target.value,
+              title: e.target.value,
             }))
           }
         />
@@ -79,9 +79,7 @@ export const EditPaymentHistory = ({ item, setIsEditMode }) => {
         />
       </Flex>
       <Flex $justifyContent="center" $gap="12px">
-        <EditConfirmButton onClick={handleConfirmEditItem}>
-          완료
-        </EditConfirmButton>
+        <EditConfirmButton onClick={handleEditItem}>완료</EditConfirmButton>
         <EditCancelButton onClick={() => setIsEditMode(false)}>
           취소
         </EditCancelButton>
