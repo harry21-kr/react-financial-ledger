@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -14,7 +14,7 @@ const initialPaymentHistoryItem = {
   description: "",
 };
 
-export const PaymentHistoryForm = () => {
+export const PaymentHistoryForm = ({ selectedMonth }) => {
   const [newItem, setNewItem] = useState(initialPaymentHistoryItem);
 
   const dispatch = useDispatch();
@@ -37,6 +37,17 @@ export const PaymentHistoryForm = () => {
       date: newItem.date,
     });
   };
+
+  useEffect(() => {
+    if (selectedMonth) {
+      setNewItem((prevItem) => ({
+        ...prevItem,
+        date: `2024-${
+          selectedMonth.length > 1 ? selectedMonth : `0${selectedMonth}`
+        }-21`,
+      }));
+    }
+  }, [selectedMonth]);
 
   return (
     <Box>

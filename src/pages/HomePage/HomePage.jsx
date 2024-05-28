@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import {
+  PaymentHistoryChart,
   PaymentHistoryForm,
   PaymentHistoryList,
   PaymentHistoryMonth,
@@ -13,11 +14,12 @@ const HomePage = () => {
   return (
     <DefaultLayout>
       <Wrap>
-        <PaymentHistoryForm />
+        <PaymentHistoryForm selectedMonth={selectedMonth} />
         <PaymentHistoryMonth
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
+        <PaymentHistoryChart selectedMonth={selectedMonth} />
         <PaymentHistoryList selectedMonth={selectedMonth} />
       </Wrap>
     </DefaultLayout>
