@@ -43,7 +43,7 @@ export const PaymentHistoryForm = ({ selectedMonth }) => {
       setNewItem((prevItem) => ({
         ...prevItem,
         date: `2024-${
-          selectedMonth.length > 1 ? selectedMonth : `0${selectedMonth}`
+          selectedMonth > 9 ? selectedMonth : `0${selectedMonth}`
         }-21`,
       }));
     }
