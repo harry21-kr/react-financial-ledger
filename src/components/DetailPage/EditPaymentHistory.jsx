@@ -12,14 +12,13 @@ export const EditPaymentHistory = ({ item, setIsEditMode }) => {
 
   const handleEditItem = () => {
     if (!newItem.title.length) {
-      alert("지출 항목을 입력해주세요");
-      return;
+      return alert("지출 항목을 입력해주세요");
     } else if (!newItem.amount) {
-      alert("금액을 입력해주세요");
-      return;
+      return alert("금액을 입력해주세요");
+    } else if (!Number.isInteger(newItem.amount)) {
+      return alert("금액란에 소수점은 허용되지 않습니다.");
     } else if (!newItem.description) {
-      alert("지출 내용을 입력해주세요");
-      return;
+      return alert("지출 내용을 입력해주세요");
     }
     dispatch(editHistoryItem(newItem));
     setIsEditMode(false);
